@@ -1,0 +1,21 @@
+
+datasource db {
+  provider = "postgresql" 
+  url      = env("DATABASE_URL") 
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Artwork {
+  id          Int      @id @default(autoincrement()) // Unique identifier for each artwork
+  title       String   // Title of the artwork
+  description String   // Description of the artwork
+  imageUrl    String   // URL of the uploaded image
+  clientLink  String?  // Optional link to the client's website
+  isVisible    Boolean  @default(true) // Status of the artwork (visible or hidden)
+  createdAt   DateTime @default(now()) // Timestamp for when the artwork was created
+  updatedAt   DateTime @updatedAt // Timestamp for when the artwork was last updated
+
+}
